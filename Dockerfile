@@ -14,7 +14,7 @@ FROM openjdk:11.0-slim
 WORKDIR /app
 
 # 빌더 이미지에서 jar 파일만 복사
-COPY --from=builder /build/build/libs/*.jar ./app.jar
+COPY --from=builder /build/build/libs/bbs5-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8080
 
@@ -25,5 +25,5 @@ ENTRYPOINT [                                                \
     "-jar",                                                 \
     "-Djava.security.egd=file:/dev/./urandom",              \
     "-Dsun.net.inetaddr.ttl=0",                             \
-    "app.jar"              \
+    "bbs5-0.0.1-SNAPSHOT.jar"              \
 ]
