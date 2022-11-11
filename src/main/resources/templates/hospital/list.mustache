@@ -11,7 +11,7 @@
     {{#hospitals}}
         <tr>
             <th scope="row">{{id}}</th>
-            <td>{{hospitalName}}</td>
+            <td><a href="/hospitals/{{id}}">{{hospitalName}}</a></td>
             <td>{{roadNameAddress}}</td>
         </tr>
     {{/hospitals}}
@@ -22,3 +22,4 @@
     <li class="page-item"><a class="page-link" href="?page={{next}}">Next</a></li>
 </ul>
 {{>layouts/footer}}
+

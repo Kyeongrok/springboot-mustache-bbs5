@@ -3,6 +3,7 @@ package com.mustache.bbs5.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -10,15 +11,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Table(name = "article5")
-public class Article {
+@Setter
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String content;
+
+    @Column(name="hospital_id")
+    private Integer hospitalId;
+    private String commentContent;
+    private String userName;
 }
-
-
-
-
