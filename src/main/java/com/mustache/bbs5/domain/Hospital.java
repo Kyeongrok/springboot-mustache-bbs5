@@ -1,5 +1,7 @@
 package com.mustache.bbs5.domain;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "nation_wide_hospitals")
+@Getter
 public class Hospital {
     @Id
     private Integer id;
