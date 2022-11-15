@@ -22,8 +22,9 @@ public class HospitalRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<HospitalResponse> get(@PathVariable Integer id) {
-        Optional<Hospital> hospital = hospitalRepository.findById(id);
-        return ResponseEntity.ok().body(Hospital.of(hospital.get()));
+    public ResponseEntity<HospitalResponse> get(@PathVariable Integer id) { // ResponseEntity도 DTO타입
+        Optional<Hospital> hospital = hospitalRepository.findById(id); // Entity
+        HospitalResponse hospitalResponse = Hospital.of(hospital.get()); // DTO
+        return ResponseEntity.ok().body(hospitalResponse); // Return은 DTO로
     }
 }
