@@ -58,10 +58,11 @@ public class HospitalController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable Integer id, Model model) {
+    public String show(@PathVariable Integer id, Model model, Pageable pageable) {
         Optional<Hospital> hospital = hospitalRepository.findById(id);
-        List<Review> reviews = reviewRepository.findByHospitalId(id);
-        log.info("review cnt:{}", reviews.size());
+
+        Page<Review> reviews = reviewRepository.findByHospitalId(id, pageable);
+        log.info("review cnt:{} {}", reviews.getSize(), reviews);
         model.addAttribute("hospital", hospital.get());
         model.addAttribute("reviews", reviews);
         return "hospital/show";

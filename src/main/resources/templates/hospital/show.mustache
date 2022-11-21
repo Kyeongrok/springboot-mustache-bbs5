@@ -21,13 +21,15 @@
         <th scope="col">Id</th>
         <th scope="col">Title</th>
         <th scope="col">Content</th>
+        <th scope="col">UserName</th>
     </tr>
     </thead>
     <tbody>
     {{#reviews}}
         <tr>
-            <th scope="row">{{hospitalId}}</th>
-            <td>{{commentContent}}</td>
+            <th scope="row">{{id}}</th>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
             <td>{{userName}}</td>
         </tr>
     {{/reviews}}

@@ -1,16 +1,18 @@
 package com.mustache.bbs5.domain;
 
 import com.mustache.bbs5.domain.dto.HospitalResponse;
-import lombok.Getter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
+@Builder
 @Entity
 @Table(name = "nation_wide_hospitals")
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Hospital {
     @Id
     private Integer id;
@@ -23,6 +25,7 @@ public class Hospital {
     private Integer patientRoomCount;
     private Integer totalNumberOfBeds;
     private String businessTypeName;
+    private Integer businessStatusCode;
     private Float totalAreaSize;
 
     public static HospitalResponse of(Hospital hospital) {

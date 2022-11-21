@@ -1,11 +1,14 @@
 package com.mustache.bbs5.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,6 +20,10 @@ public class Article {
     private Long id;
     private String title;
     private String content;
+
+    public static ArticleDto of(Article article) {
+        return new ArticleDto(article.getId(), article.getTitle(), article.getContent());
+    }
 }
 
 
