@@ -1,10 +1,7 @@
 package com.mustache.bbs5.domain;
 
 import com.mustache.bbs5.domain.dto.VisitResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,7 +10,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Visit {
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class Visit extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
