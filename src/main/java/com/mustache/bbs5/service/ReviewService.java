@@ -1,7 +1,9 @@
 package com.mustache.bbs5.service;
 
+import com.mustache.bbs5.domain.Hospital;
 import com.mustache.bbs5.domain.Review;
 import com.mustache.bbs5.domain.dto.ReviewCreateRequest;
+import com.mustache.bbs5.repository.HospitalRepository;
 import com.mustache.bbs5.repository.ReviewRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +15,11 @@ import java.util.Optional;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final HospitalRepository hospitalRepository;
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository, HospitalRepository hospitalRepository) {
         this.reviewRepository = reviewRepository;
+        this.hospitalRepository = hospitalRepository;
     }
 
     public Review get(Long id) {
@@ -29,9 +33,10 @@ public class ReviewService {
     }
 
     public void create(ReviewCreateRequest dto) {
-
-        // review save
-        Review savedReview = reviewRepository.save(Review.of(dto.getHospitalId(), dto.getTitle(), dto.getContent(), dto.getUserName()));
-
+        // hospitalId를 받아서 Hospital을 select함
+        Optional<Hospital> optionalHospital = hospitalRepository.findById(dto.getHospitalId());
+        Review savedReview = reviewRepository.save(Review.of(
+                optionalHospital.orElseThrow(()-> new IllegalArgumentException("해당 hospitalId에 해당하는 병원이 없습니다.")),
+                dto.getTitle(), dto.getContent(), dto.getUserName()));
     }
 }

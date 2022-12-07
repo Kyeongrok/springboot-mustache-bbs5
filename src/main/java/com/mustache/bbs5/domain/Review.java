@@ -15,15 +15,17 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="hospital_id")
-    private Integer hospitalId;
     private String title;
     private String content;
     private String userName;
 
-    public static Review of(Integer hospitalId, String title, String content, String userName) {
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
+
+    public static Review of(Hospital hospital, String title, String content, String userName) {
         Review review = new Review();
-        review.setHospitalId(hospitalId);
+        review.setHospital(hospital);
         review.setTitle(title);
         review.setContent(content);
         review.setUserName(userName);
