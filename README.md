@@ -17,3 +17,12 @@ RequstBody {
     disease:<String>,
     amount:<float>
 }
+
+### 조회 기능
+
+등록된 방문 내역을 조회하는 기능
+
+GET /api/v1/visits
+
+GET /api/v1/visits?page=<page_no>
+
